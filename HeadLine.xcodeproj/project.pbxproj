@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		843BB7BB2519D9C40032006E /* HLDataBaseManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 843BB7BA2519D9C40032006E /* HLDataBaseManger.m */; };
+		843BB7C72519F7290032006E /* HLDataRequest+HLHomeDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 843BB7C62519F7290032006E /* HLDataRequest+HLHomeDataRequest.m */; };
 		8E019457B31024788EEDB1E2 /* Pods_HeadLine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469765A03E5F8723CBA7B8ED /* Pods_HeadLine.framework */; };
 		DCB4A3CE2515E9350086CCD0 /* News.json in Resources */ = {isa = PBXBuildFile; fileRef = DCB4A3CD2515E9350086CCD0 /* News.json */; };
 		DCC1A64B2515B6B100FA4170 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC1A64A2515B6B100FA4170 /* AppDelegate.m */; };
@@ -43,6 +45,10 @@
 		242501B4BF7B455FBCB602FF /* Pods-HeadLine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeadLine.debug.xcconfig"; path = "Target Support Files/Pods-HeadLine/Pods-HeadLine.debug.xcconfig"; sourceTree = "<group>"; };
 		469765A03E5F8723CBA7B8ED /* Pods_HeadLine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeadLine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		47182B34CC330427511A7DD2 /* Pods-HeadLine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeadLine.release.xcconfig"; path = "Target Support Files/Pods-HeadLine/Pods-HeadLine.release.xcconfig"; sourceTree = "<group>"; };
+		843BB7B92519D9C40032006E /* HLDataBaseManger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLDataBaseManger.h; sourceTree = "<group>"; };
+		843BB7BA2519D9C40032006E /* HLDataBaseManger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLDataBaseManger.m; sourceTree = "<group>"; };
+		843BB7C52519F7290032006E /* HLDataRequest+HLHomeDataRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HLDataRequest+HLHomeDataRequest.h"; sourceTree = "<group>"; };
+		843BB7C62519F7290032006E /* HLDataRequest+HLHomeDataRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "HLDataRequest+HLHomeDataRequest.m"; sourceTree = "<group>"; };
 		DCB4A3CD2515E9350086CCD0 /* News.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = News.json; sourceTree = "<group>"; };
 		DCC1A6462515B6B100FA4170 /* HeadLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeadLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC1A6492515B6B100FA4170 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -102,6 +108,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		843BB7B82519D9A60032006E /* DataBaseManger */ = {
+			isa = PBXGroup;
+			children = (
+				843BB7B92519D9C40032006E /* HLDataBaseManger.h */,
+				843BB7BA2519D9C40032006E /* HLDataBaseManger.m */,
+			);
+			path = DataBaseManger;
+			sourceTree = "<group>";
+		};
 		DCC1A63D2515B6B100FA4170 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +142,7 @@
 		DCC1A6482515B6B100FA4170 /* HeadLine */ = {
 			isa = PBXGroup;
 			children = (
+				843BB7B82519D9A60032006E /* DataBaseManger */,
 				DCC1A6892515C85800FA4170 /* DataRequest */,
 				DCC1A6492515B6B100FA4170 /* AppDelegate.h */,
 				DCC1A64A2515B6B100FA4170 /* AppDelegate.m */,
@@ -169,6 +185,8 @@
 			children = (
 				DCC1A68A2515C87000FA4170 /* HLDataRequest.h */,
 				DCC1A68B2515C87000FA4170 /* HLDataRequest.m */,
+				843BB7C52519F7290032006E /* HLDataRequest+HLHomeDataRequest.h */,
+				843BB7C62519F7290032006E /* HLDataRequest+HLHomeDataRequest.m */,
 			);
 			path = DataRequest;
 			sourceTree = "<group>";
@@ -193,7 +211,7 @@
 				DCC1A6422515B6B100FA4170 /* Sources */,
 				DCC1A6432515B6B100FA4170 /* Frameworks */,
 				DCC1A6442515B6B100FA4170 /* Resources */,
-				99AE079ABB754402E328C519 /* [CP] Embed Pods Frameworks */,
+				7B8338A20BEA866987D79231 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -334,17 +352,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		99AE079ABB754402E328C519 /* [CP] Embed Pods Frameworks */ = {
+		7B8338A20BEA866987D79231 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HeadLine/Pods-HeadLine-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HeadLine/Pods-HeadLine-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HeadLine/Pods-HeadLine-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -360,6 +389,8 @@
 			files = (
 				DCC1A6802515B7A900FA4170 /* HLTableViewController.m in Sources */,
 				DCC1A64B2515B6B100FA4170 /* AppDelegate.m in Sources */,
+				843BB7C72519F7290032006E /* HLDataRequest+HLHomeDataRequest.m in Sources */,
+				843BB7BB2519D9C40032006E /* HLDataBaseManger.m in Sources */,
 				DCC1A65C2515B6B400FA4170 /* main.m in Sources */,
 				DCC1A6882515C84E00FA4170 /* HLModel.m in Sources */,
 				DCC1A6852515C83D00FA4170 /* HLTableViewCell.m in Sources */,

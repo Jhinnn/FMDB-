@@ -11,6 +11,7 @@
 #import "HLDataRequest.h"
 #import "YYModel.h"
 #import "HLModel.h"
+#import "HLDataBaseManger.h"
 @interface HLTableViewController ()
 
 @property (nonatomic, strong) NSMutableArray *news;
@@ -24,19 +25,34 @@
     
 //    NSLog(@"%@",[self readLocalFileWithName:@"News"]);
     
-    self.news =  [self readLocalFileWithName:@"News"].copy;
+//    self.news =  [self readLocalFileWithName:@"News"].copy;
+    
+     [[HLDataBaseManger sharedInstance] createDataBaseAndTable];
 
-//    [[HLDataRequest sharedInstace] post:@"T1467284926140/0-20.html" parameters:@{} success:^(id  _Nonnull response) {
+    
+//    [[HLDataBaseManger sharedInstance] dropTable];
+    self.news = [NSMutableArray arrayWithCapacity:10];
+    [[HLDataRequest sharedInstace] post:@"T1467284926140/0-20.html" parameters:@{} success:^(NSDictionary *response) {
 //        NSLog(@"%@",response);
-//    } failure:^(NSError * _Nonnull error) {
-//
-//    }];
+        NSArray *data = response[@"T1467284926140"];
+        for (NSDictionary *dict in data) {
+            HLModel *model = [HLModel yy_modelWithDictionary:dict];
+            [self.news addObject:model];
+            
+        }
+    } failure:^(NSError * _Nonnull error) {
+
+    }];
 }
 
 
 - (void)setNews:(NSMutableArray *)news {
     _news = news;
     [self.tableView reloadData];
+    
+    
+    [[HLDataBaseManger sharedInstance] saveDatas:_news.copy];
+    
 }
 
 // 读取本地JSON文件
@@ -64,14 +80,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HLModel *model = self.news[indexPath.row];
-    HLTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[HLTableViewCell getReusableCellId:model] forIndexPath:indexPath];
+    HLTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bImageVCell" forIndexPath:indexPath];
     cell.model = model;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    HLModel *model = self.news[indexPath.row];
-    return [HLTableViewCell getRowHeight:model];
+    return 300;
 }
 
 

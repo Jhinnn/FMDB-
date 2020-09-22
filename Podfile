@@ -7,4 +7,5 @@ target 'HeadLine' do
     pod 'SDWebImage'
     pod 'AFNetworking'
     pod 'YYModel'
+    pod 'FMDB'
 end

@@ -15,12 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) HLModel *model;
 
 
-
-
-+ (NSString *)getReusableCellId:(HLModel *)model;
-
-+ (CGFloat)getRowHeight:(HLModel *)model;
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -39,7 +39,7 @@
 
 - (void)post:(NSString *)url parameters:(id)parameters success:(void (^)(id response))success failure:(void (^)(NSError *error))failure {
     
-    [self.manager POST:[NSString stringWithFormat:@"%@%@",Base_Url,url] parameters:parameters headers:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+    [self.manager POST:[NSString stringWithFormat:@"%@%@",Base_Url,url] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         success(responseObject);

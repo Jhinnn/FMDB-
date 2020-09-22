@@ -12,14 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HLModel : NSObject
 
-
+@property (nonatomic, copy) NSString *docid;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *digest;
 @property (nonatomic, copy) NSString *imgsrc;
-@property (nonatomic, copy) NSArray *extrsImg;
-//1 小图  10 大图 3 三图  0无图
-@property (nonatomic, copy) NSNumber *imageType;
-
 
 
 @end

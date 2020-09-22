@@ -7,12 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "FMDB.h"
+@class HLModel;
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DataBaseManger : NSObject
+@interface HLDataBaseManger : NSObject
 
 + (instancetype)sharedInstance;
+
+- (void)createDataBaseAndTable;
+
+- (void)dropTable;
+
+- (void)saveDatas:(NSArray *)datas key:(NSString *)key;
+
+- (NSArray *)queryDatas:(NSString *)key;
+
 
 @end
 
