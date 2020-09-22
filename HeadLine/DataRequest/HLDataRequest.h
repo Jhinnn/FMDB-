@@ -12,9 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HLDataRequest : NSObject
 
+
+
 + (instancetype)sharedInstace;
 
 - (void)post:(NSString *)url parameters:(id)parameters success:(void (^)(id response))success failure:(void (^)(NSError *error))failure;
+
+
 
 @end
 

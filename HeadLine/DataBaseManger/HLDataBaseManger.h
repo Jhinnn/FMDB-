@@ -19,9 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)dropTable;
 
-- (void)saveDatas:(NSArray *)datas key:(NSString *)key;
+- (BOOL)saveDatas:(NSDictionary *)datas key:(NSString *)key;
 
-- (NSArray *)queryDatas:(NSString *)key;
+- (id)queryDatas:(NSString *)key;
 
 
 @end

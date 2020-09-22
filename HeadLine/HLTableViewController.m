@@ -8,7 +8,7 @@
 
 #import "HLTableViewController.h"
 #import "HLTableViewCell.h"
-#import "HLDataRequest.h"
+#import "HLDataRequest+HLHomeDataRequest.h"
 #import "YYModel.h"
 #import "HLModel.h"
 #import "HLDataBaseManger.h"
@@ -29,19 +29,21 @@
     
      [[HLDataBaseManger sharedInstance] createDataBaseAndTable];
 
+    NSLog(@"%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]);
     
 //    [[HLDataBaseManger sharedInstance] dropTable];
     self.news = [NSMutableArray arrayWithCapacity:10];
-    [[HLDataRequest sharedInstace] post:@"T1467284926140/0-20.html" parameters:@{} success:^(NSDictionary *response) {
-//        NSLog(@"%@",response);
+    
+    [[HLDataRequest sharedInstace] getHomeData:@"T1467284926140/0-20.html" parameters:@{} success:^(id  _Nonnull response) {
         NSArray *data = response[@"T1467284926140"];
-        for (NSDictionary *dict in data) {
-            HLModel *model = [HLModel yy_modelWithDictionary:dict];
-            [self.news addObject:model];
-            
+        if (data) {
+            for (NSDictionary *dict in data) {
+                HLModel *model = [HLModel yy_modelWithDictionary:dict];
+                [self.news addObject:model];
+            }
         }
     } failure:^(NSError * _Nonnull error) {
-
+        
     }];
 }
 
@@ -51,7 +53,7 @@
     [self.tableView reloadData];
     
     
-    [[HLDataBaseManger sharedInstance] saveDatas:_news.copy];
+//    [[HLDataBaseManger sharedInstance] saveDatas:_news.copy];
     
 }
 
@@ -72,6 +74,8 @@
     }
     return arrays;
 }
+
+
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -65,18 +65,42 @@
     }
 }
 
-- (void)saveDatas:(NSArray *)datas key:(NSString *)key {
+
+
+/// 根据 key 接口地址缓存接口请求数据
+/// @param datas 数据
+/// @param key 接口地址
+- (BOOL)saveDatas:(NSDictionary *)datas key:(NSString *)key {
+    //将数据用归档的方式转换成NSData，避免写复杂的sql语句。
+    [self.db open];
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:datas requiringSecureCoding:YES error:nil];
-     [self.db executeQuery:@"Insert into newsTable (dict, keyPath) values (?,?);",data,key];
+    BOOL result = [self.db executeQuery:@"Insert into newsTable (dict, keyPath) values (?,?);",data,key];
+    if (result) {
+        NSLog(@"缓存成功...");
+    }else {
+        NSLog(@"缓存失败...");
+    }
+    [self.db close];
+    return result;
 }
 
-- (NSArray *)queryDatas:(NSString *)key {
-    FMResultSet *set = [self.db executeQuery:@"select * from newsTable where keyPath = ?",key];
+- (id)queryDatas:(NSString *)key {
+    [self.db open];
+    NSString *sql = [NSString stringWithFormat:@"select * from newsTable;"];
+    FMResultSet *set = [self.db executeQuery:sql];
+    NSData *data = [set objectForColumn:@"dict"];
+    id datas = nil;
     while (set.next) {
         NSData *data = [set objectForColumn:@"dict"];
-        NSArray *datas = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSArray class] fromData:data error:nil];
+        datas = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSArray class] fromData:data error:nil];
+        NSLog(@"%@接口，有缓存数据为：%@",key,datas);
     }
-    return @[];
+    if (!datas) {
+        NSLog(@"%@接口，没有缓存数据",key);
+        return datas;
+    }
+    [self.db close];
+    return datas;
 }
 
 //- (void)saveDataWithModel:(HLModel *)model {
