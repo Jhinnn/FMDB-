@@ -26,9 +26,15 @@
     self.titleLbl.text = _model.title;
     self.contentLbl.text = _model.digest;
     [self.imageV sd_setImageWithURL:[NSURL URLWithString:_model.imgsrc]];
-    
-    
 }
+
+
++ (CGFloat)rowHightWithModel:(HLModel *)model {
+    return 100;
+}
+
+
+
 
 
 @end

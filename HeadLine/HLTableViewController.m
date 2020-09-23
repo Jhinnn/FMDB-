@@ -23,17 +23,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    NSLog(@"%@",[self readLocalFileWithName:@"News"]);
+    [[HLDataBaseManger defaultMangeer] setupTable];
     
-//    self.news =  [self readLocalFileWithName:@"News"].copy;
-    
-     [[HLDataBaseManger sharedInstance] createDataBaseAndTable];
+    [self dataRequest];
+}
 
-    NSLog(@"%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]);
-    
-//    [[HLDataBaseManger sharedInstance] dropTable];
+- (void)dataRequest {
     self.news = [NSMutableArray arrayWithCapacity:10];
-    
     [[HLDataRequest sharedInstace] getHomeData:@"T1467284926140/0-20.html" parameters:@{} success:^(id  _Nonnull response) {
         NSArray *data = response[@"T1467284926140"];
         if (data) {
@@ -41,20 +37,11 @@
                 HLModel *model = [HLModel yy_modelWithDictionary:dict];
                 [self.news addObject:model];
             }
+            [self.tableView reloadData];
         }
     } failure:^(NSError * _Nonnull error) {
         
     }];
-}
-
-
-- (void)setNews:(NSMutableArray *)news {
-    _news = news;
-    [self.tableView reloadData];
-    
-    
-//    [[HLDataBaseManger sharedInstance] saveDatas:_news.copy];
-    
 }
 
 // 读取本地JSON文件
@@ -74,8 +61,6 @@
     }
     return arrays;
 }
-
-
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

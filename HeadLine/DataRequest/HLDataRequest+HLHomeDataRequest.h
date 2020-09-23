@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface HLDataRequest (HLHomeDataRequest)
 
 
-
 - (void)getHomeData:(NSString *)url parameters:(id)parameters success:(void (^)(id response))success failure:(void (^)(NSError *error))failure;
 
 @end

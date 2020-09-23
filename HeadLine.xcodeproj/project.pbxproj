@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		841DF4A5251B47B9002DF324 /* HLNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 841DF4A4251B47B9002DF324 /* HLNetWorkManager.m */; };
 		843BB7BB2519D9C40032006E /* HLDataBaseManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 843BB7BA2519D9C40032006E /* HLDataBaseManger.m */; };
 		843BB7C72519F7290032006E /* HLDataRequest+HLHomeDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 843BB7C62519F7290032006E /* HLDataRequest+HLHomeDataRequest.m */; };
 		8E019457B31024788EEDB1E2 /* Pods_HeadLine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469765A03E5F8723CBA7B8ED /* Pods_HeadLine.framework */; };
@@ -45,6 +46,8 @@
 		242501B4BF7B455FBCB602FF /* Pods-HeadLine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeadLine.debug.xcconfig"; path = "Target Support Files/Pods-HeadLine/Pods-HeadLine.debug.xcconfig"; sourceTree = "<group>"; };
 		469765A03E5F8723CBA7B8ED /* Pods_HeadLine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeadLine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		47182B34CC330427511A7DD2 /* Pods-HeadLine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeadLine.release.xcconfig"; path = "Target Support Files/Pods-HeadLine/Pods-HeadLine.release.xcconfig"; sourceTree = "<group>"; };
+		841DF4A3251B47B9002DF324 /* HLNetWorkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLNetWorkManager.h; sourceTree = "<group>"; };
+		841DF4A4251B47B9002DF324 /* HLNetWorkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLNetWorkManager.m; sourceTree = "<group>"; };
 		843BB7B92519D9C40032006E /* HLDataBaseManger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLDataBaseManger.h; sourceTree = "<group>"; };
 		843BB7BA2519D9C40032006E /* HLDataBaseManger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLDataBaseManger.m; sourceTree = "<group>"; };
 		843BB7C52519F7290032006E /* HLDataRequest+HLHomeDataRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HLDataRequest+HLHomeDataRequest.h"; sourceTree = "<group>"; };
@@ -108,6 +111,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		841DF4A2251B4790002DF324 /* HLNetWorkManager */ = {
+			isa = PBXGroup;
+			children = (
+				841DF4A3251B47B9002DF324 /* HLNetWorkManager.h */,
+				841DF4A4251B47B9002DF324 /* HLNetWorkManager.m */,
+			);
+			path = HLNetWorkManager;
+			sourceTree = "<group>";
+		};
 		843BB7B82519D9A60032006E /* DataBaseManger */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +154,7 @@
 		DCC1A6482515B6B100FA4170 /* HeadLine */ = {
 			isa = PBXGroup;
 			children = (
+				841DF4A2251B4790002DF324 /* HLNetWorkManager */,
 				843BB7B82519D9A60032006E /* DataBaseManger */,
 				DCC1A6892515C85800FA4170 /* DataRequest */,
 				DCC1A6492515B6B100FA4170 /* AppDelegate.h */,
@@ -394,6 +407,7 @@
 				DCC1A65C2515B6B400FA4170 /* main.m in Sources */,
 				DCC1A6882515C84E00FA4170 /* HLModel.m in Sources */,
 				DCC1A6852515C83D00FA4170 /* HLTableViewCell.m in Sources */,
+				841DF4A5251B47B9002DF324 /* HLNetWorkManager.m in Sources */,
 				DCC1A68C2515C87000FA4170 /* HLDataRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

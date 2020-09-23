@@ -11,18 +11,29 @@
 @class HLModel;
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum : NSUInteger {
+    HLDataBaseMangerCacheMore10Min,
+    HLDataBaseMangerCacheLess10Min,
+    HLDataBaseMangerNoCache,
+} HLDataBaseMangerType;
+
 @interface HLDataBaseManger : NSObject
 
-+ (instancetype)sharedInstance;
++ (instancetype)defaultMangeer;
 
-- (void)createDataBaseAndTable;
+- (void)setupTable;
 
-- (void)dropTable;
+- (BOOL)saveDatas:(NSDictionary *)dict key:(NSString *)key;
 
-- (BOOL)saveDatas:(NSDictionary *)datas key:(NSString *)key;
+- (NSDictionary *)queryDatas:(NSString *)key;
 
-- (id)queryDatas:(NSString *)key;
+- (BOOL)isNeedToRequest:(NSString *)key;
 
+- (BOOL)hasCache:(NSString *)key;
+
+- (BOOL)deleteData:(NSString *)key;
+
+- (BOOL)calculateTime:(NSString *)startTimestamp;
 
 @end
 
